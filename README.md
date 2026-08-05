@@ -28,7 +28,7 @@
 | 關於     | 主視覺 hero、轉職路徑時間線、專注技術、理念              |
 | 語法 Notes | HTML / CSS / JavaScript / React / Vue / Nuxt / Node.js / SQL 學習筆記 |
 | 部落格 Blog | 前端專案開發紀錄                                       |
-| 作品 Portfolio | 個人與團隊作品展示                                 |
+| 作品 Portfolio | 團隊協作、個人專案、後端工具與互動式學習等作品展示 |
 
 ---
 
@@ -41,8 +41,8 @@
 | React      | 7      |
 | Vue        | 7      |
 | Nuxt       | 1      |
-| Node.js    | 7      |
-| SQL        | 2      |
+| Node.js    | 8      |
+| SQL        | 4      |
 | Git        | 3      |
 
 > 文章 frontmatter 加上 `date: YYYY-MM-DD` 即會被「最新筆記」外掛收錄，顯示在首頁目錄區。

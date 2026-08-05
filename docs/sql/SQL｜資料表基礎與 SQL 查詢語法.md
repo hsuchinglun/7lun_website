@@ -282,7 +282,7 @@ DELETE FROM members;
 ```
 
 :::warning
-沒有 `WHERE` 的 `UPDATE`／`DELETE` 會對**整張表**生效，而且沒有「復原」按鈕可以救。這不是誇飾——社群上能查到大量真實案例：有工程師在正式環境跑漏了 `WHERE` 的 `UPDATE`，一次把上萬筆薪資資料全部清空；也有人因為忘了 `WHERE` 把整張表 `DELETE` 光，只能靠備份或 binlog 事後救援。也因此 MySQL 提供了 `sql_safe_updates` 安全模式，只要偵測到 `UPDATE`／`DELETE` 沒帶 `WHERE` 就直接擋下報錯。PostgreSQL 沒有同名的內建開關，但原則一樣適用：**下指令前，先用相同的 `WHERE` 條件跑一次 `SELECT` 確認影響範圍，再執行 `UPDATE` 或 `DELETE`**。
+沒有 `WHERE` 的 `UPDATE`／`DELETE` 會對**整張表**生效，而且沒有「復原」按鈕可以救。在社群上能查到大量真實案例：有工程師在正式環境跑漏了 `WHERE` 的 `UPDATE`，一次把上萬筆薪資資料全部清空。也有人因為忘了 `WHERE` 把整張表 `DELETE` 光，只能靠備份或 binlog 事後救援。也因此 MySQL 提供了 `sql_safe_updates` 安全模式，只要偵測到 `UPDATE`／`DELETE` 沒帶 `WHERE` 就直接擋下報錯。PostgreSQL 沒有同名的內建開關，但原則一樣適用：**下指令前，先用相同的 `WHERE` 條件跑一次 `SELECT` 確認影響範圍，再執行 `UPDATE` 或 `DELETE`**。
 :::
 
 ### 九、SQL 語法快速複習卡
@@ -312,9 +312,6 @@ DELETE FROM members;
 - [Day 19 - ORDER BY 排序與 LIMIT](https://hackmd.io/@hex-course/B1FT-FffMg)
 - [Day 20 - INSERT / UPDATE / DELETE 資料寫入](https://hackmd.io/@hex-course/B1CNvYGGzg)
 - [Day 21 - 書店後台 SQL 綜合演練](https://hackmd.io/@hex-course/SJ9Batffzl)
-
-**補充查證資料**
-
 - [PostgreSQL 官方文件 — Querying a Table（SELECT * 使用建議）](https://www.postgresql.org/docs/current/tutorial-select.html)
 - [PostgreSQL 官方文件 — SELECT 完整語法](https://www.postgresql.org/docs/current/sql-select.html)
 - [PostgreSQL 官方文件 — Numeric Types（INTEGER / NUMERIC 選用建議）](https://www.postgresql.org/docs/current/datatype-numeric.html)

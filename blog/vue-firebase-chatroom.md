@@ -3,7 +3,7 @@ slug: vue-firebase-chatroom
 title: Roomly 即時聊天室
 authors: [7lun]
 tags: [project, Vue, Firebase]
-date: 2026-06-17
+date: 2026-06-13
 ---
 
 ### 前言
@@ -17,7 +17,7 @@ date: 2026-06-17
 - **Live Demo**：[**Roomly**](https://roomly-azure.vercel.app/)
 - **GitHub**：[**GitHub Repo**](https://github.com/MalricHsu/roomly)
 - **使用技術**：`Vue 3` / `Composition API` / `Vite` / `Vue Router` / `Firebase Authentication` / `Cloud Firestore`
-- **專案時程**：2026.06.17 ~ 2026.06.18
+- **專案時程**：2026.06.12 ~ 2026.06.13
 - **網站部署**：Vercel
 
 
@@ -45,7 +45,7 @@ Firebase 是 Google 提供的 BaaS（後端即服務），主要優點包括：
 
 :::info
 **名詞介紹**
-1. BaaS（Backend as a Service，後端即服務）：指將後端功能以雲端服務形式提供的解決方案，開發者只需要2專注在前端開發，不需要管理伺服器、資料庫、身分驗證等後端事務。
+1. BaaS（Backend as a Service，後端即服務）：指將後端功能以雲端服務形式提供的解決方案，開發者只需要專注在前端開發，不需要管理伺服器、資料庫、身分驗證等後端事務。
 2. SDK（軟體開發工具包）：官方提供的一組開發工具與功能，讓開發者可以直接使用，例如登入、讀取資料或即時監聽，不需要從零開始撰寫。
 :::
 

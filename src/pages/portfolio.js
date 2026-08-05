@@ -27,33 +27,52 @@ function ProjectCard({ project }) {
         <span className={styles.featureCategory}>{project.category}</span>
         <h3 className={styles.featureTitle}>{project.title}</h3>
         <p className={styles.featureDesc}>{project.desc}</p>
-        <div className={styles.featureTags}>
-          {project.tags.map((tag, i) => (
-            <span key={i} className={styles.featureTag}>
-              {tag}
-            </span>
-          ))}
-        </div>
+        {project.tags && project.tags.length > 0 && (
+          <div className={styles.featureTags}>
+            {project.tags.map((tag, i) => (
+              <span key={i} className={styles.featureTag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
         <div className={styles.featureLinks}>
-          {project.github && (
-            <>
-              <Link to={project.github} className={styles.featureLink}>
-                GitHub Repo ↗
-              </Link>
-              <span className={styles.featureSep}>・</span>
-            </>
-          )}
-          {project.demo && (
-            <>
-              <Link to={project.demo} className={styles.featureLink}>
-                Demo ↗
-              </Link>
-              <span className={styles.featureSep}>・</span>
-            </>
-          )}
-          <Link to={project.link} className={styles.featureLink}>
-            開發紀錄 ↗
-          </Link>
+          {(() => {
+            const links = [];
+            if (project.github) {
+              const repos = Array.isArray(project.github) ? project.github : [project.github];
+              repos.forEach((repoLink, index, arr) => {
+                const isMulti = arr.length > 1;
+                const label = isMulti ? (index === 0 ? "GitHub (前端) ↗" : "GitHub (後端) ↗") : "GitHub Repo ↗";
+                links.push(
+                  <Link key={`github-${index}`} to={repoLink} className={styles.featureLink}>
+                    {label}
+                  </Link>
+                );
+              });
+            }
+            if (project.demo) {
+              links.push(
+                <Link key="demo" to={project.demo} className={styles.featureLink}>
+                  Demo ↗
+                </Link>
+              );
+            }
+            if (project.link) {
+              links.push(
+                <Link key="link" to={project.link} className={styles.featureLink}>
+                  開發紀錄 ↗
+                </Link>
+              );
+            }
+
+            return links.map((linkElement, index) => (
+              <React.Fragment key={index}>
+                {linkElement}
+                {index < links.length - 1 && <span className={styles.featureSep}>・</span>}
+              </React.Fragment>
+            ));
+          })()}
         </div>
       </div>
     </article>
@@ -154,7 +173,32 @@ export default function PortfolioPage() {
       ],
       github: "https://github.com/MalricHsu/roomly",
       demo: "https://roomly-azure.vercel.app/",
+    },
+    {
+    title: "Pixly 圖片壓縮工具",
+      category: "工具",
+      desc: "Vue 3 + Express 打造的圖片壓縮工具，支援圖片上傳、壓縮、下載，可調整壓縮品質。",
+      link: "/blog/vue-nodejs-image-compressor",
+      img: require("@site/static/img/pixly.png").default,
+      tags: [
+        "Vue 3", "Composition API", "Vite", "axios", "Node.js", "Express", "formidable", "sharp"
+      ],
+      github: ["https://github.com/hsuchinglun/image-compress-frontend", "https://github.com/hsuchinglun/image-compress-backend"],
+      demo: "https://image-compress-frontend.vercel.app/",
     }
+  ];
+
+  // 互動式學習（之後新增：依上方格式填入物件即可）
+  const interactiveProjects = [
+         {
+          title: "Git Daily",
+          category: "互動學習",
+          desc: "專為新手設計的 Git 互動學習網頁，透過簡單易懂的圖文搭配實際操作，帶領學習者一步步踏入 Git 的世界。",
+          img: require("@site/static/img/gitdaily.png").default,
+          tags: ["vue3","claude code"],
+          github: "https://github.com/hsuchinglun/learn_git",
+          demo: "https://git.7lunchapter.com/",
+         }
   ];
 
   return (
@@ -201,6 +245,19 @@ export default function PortfolioPage() {
             ) : (
               <div className={styles.featureGrid}>
                 {backendTools.map((project, idx) => (
+                  <ProjectCard key={idx} project={project} />
+                ))}
+              </div>
+            )}
+          </section>
+
+          <section className={styles.portfolioGroup}>
+            <SectionKicker kicker="互動學習 ・ INTERACTIVE" title="互動式學習網站" />
+            {interactiveProjects.length === 0 ? (
+              <p className={styles.contentsEmpty}>互動式學習作品準備中，敬請期待。</p>
+            ) : (
+              <div className={styles.featureGrid}>
+                {interactiveProjects.map((project, idx) => (
                   <ProjectCard key={idx} project={project} />
                 ))}
               </div>

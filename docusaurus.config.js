@@ -103,7 +103,7 @@ const config = {
           },
           { to: "/blog", label: "部落格 Blog", position: "right" },
           {
-            href: "https://github.com/MalricHsu",
+            href: "https://github.com/hsuchinglun",
             position: "right",
             className: "header-github-link",
             label: "GitHub",
